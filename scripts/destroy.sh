@@ -22,6 +22,6 @@ done
 echo "Done"
 
 if [ -n "`lsmod | grep brd`" ]; then
-	echo "Unload brd module"
-	#rmmod brd
+	echo "Unloading brd module"
+	rmmod brd
 fi
