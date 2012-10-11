@@ -9,7 +9,9 @@ echo "Backing device has been formatted"
 
 # Register and attach
 echo /dev/$CACHE_SET > /sys/fs/bcache/register
+echo "Cache set has been registered"
 echo /dev/$BACKING_DEV > /sys/fs/bcache/register
+echo "Backing device has been registered"
 BCACHE_DEV=`ls /sys/block/ | grep bcache`
 echo "Bcache special device is dev/"$BCACHE_DEV"."
 echo $CACHE_SET_UUID > /sys/block/$BCACHE_DEV/bcache/attach
@@ -17,3 +19,4 @@ echo $CACHE_SET_UUID > /sys/block/$BCACHE_DEV/bcache/attach
 # Mount the backing device and choose queueing strategy
 mkfs -t ext4 -q /dev/$BCACHE_DEV
 mount /dev/$BCACHE_DEV /media/bcache
+echo "Bcache special device has been formatted and mounted"
