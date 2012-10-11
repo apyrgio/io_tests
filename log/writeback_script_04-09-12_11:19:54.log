@@ -1,0 +1,20 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+mkfs.-q: No such file or directory
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+UUID:			cbf98676-816f-4034-92bb-727e46002746
+Set UUID:		43f278d8-8ffe-4513-8784-d950a6311729
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
