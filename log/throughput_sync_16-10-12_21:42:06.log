@@ -1,0 +1,121 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+/dev/sda7 is apparently in use by the system; will not make a filesystem here!
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+Cache set has been formatted
+UUID:			690af9d6-41b0-4731-b98c-cff9fb32f3cc
+Set UUID:		4de0709b-20a4-40a4-aedd-f108f92ae7c3
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
+Backing device has been formatted
+Cache set has been registered
+Backing device has been registered
+Bcache special device is dev/bcache0.
+/dev/bcache0 is mounted; will not make a filesystem here!
+mount: /dev/bcache0 already mounted or /media/bcache busy
+mount: according to mtab, /dev/bcache0 is already mounted on /media/bcache
+Bcache special device has been formatted and mounted
+#################### GATE 3: BENCHMARKS ################
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.397 $
+		Compiled for 32 bit mode.
+		Build: linux 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer.
+	             Ben England.
+
+	Run began: Tue Oct 16 21:42:06 2012
+
+	File size set to 131072 KB
+	Record Size 4 KB
+	O_DIRECT feature enabled
+	Excel chart generation enabled
+	Command line used: iozone -i 0 -i 1 -i 2 -s 128M -r 4K -I -t 1 -Rb /home/brainfree/playground/io_tests/results/throughput_sync_16-10-12_21:42:06.ods
+	Output is in Kbytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 Kbytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Throughput test with 1 process
+	Each process writes a 131072 Kbyte file in 4 Kbyte records
+
+	Children see throughput for  1 initial writers 	=  118686.80 KB/sec
+	Parent sees throughput for  1 initial writers 	=  118611.51 KB/sec
+	Min throughput per process 			=  118686.80 KB/sec 
+	Max throughput per process 			=  118686.80 KB/sec
+	Avg throughput per process 			=  118686.80 KB/sec
+	Min xfer 					=  131072.00 KB
+
+	Children see throughput for  1 rewriters 	=  167724.52 KB/sec
+	Parent sees throughput for  1 rewriters 	=  167598.18 KB/sec
+	Min throughput per process 			=  167724.52 KB/sec 
+	Max throughput per process 			=  167724.52 KB/sec
+	Avg throughput per process 			=  167724.52 KB/sec
+	Min xfer 					=  131072.00 KB
+
+	Children see throughput for  1 readers 		=  521204.50 KB/sec
+	Parent sees throughput for  1 readers 		=  519716.57 KB/sec
+	Min throughput per process 			=  521204.50 KB/sec 
+	Max throughput per process 			=  521204.50 KB/sec
+	Avg throughput per process 			=  521204.50 KB/sec
+	Min xfer 					=  131072.00 KB
+
+	Children see throughput for 1 re-readers 	=  524048.84 KB/sec
+	Parent sees throughput for 1 re-readers 	=  523114.35 KB/sec
+	Min throughput per process 			=  524048.84 KB/sec 
+	Max throughput per process 			=  524048.84 KB/sec
+	Avg throughput per process 			=  524048.84 KB/sec
+	Min xfer 					=  131072.00 KB
+
+	Children see throughput for 1 random readers 	=  491259.75 KB/sec
+	Parent sees throughput for 1 random readers 	=  490452.55 KB/sec
+	Min throughput per process 			=  491259.75 KB/sec 
+	Max throughput per process 			=  491259.75 KB/sec
+	Avg throughput per process 			=  491259.75 KB/sec
+	Min xfer 					=  131072.00 KB
+
+	Children see throughput for 1 random writers 	=  137213.97 KB/sec
+	Parent sees throughput for 1 random writers 	=  137127.40 KB/sec
+	Min throughput per process 			=  137213.97 KB/sec 
+	Max throughput per process 			=  137213.97 KB/sec
+	Avg throughput per process 			=  137213.97 KB/sec
+	Min xfer 					=  131072.00 KB
+
+
+
+"Throughput report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 Kbytes "
+"Output is in Kbytes/sec"
+
+"  Initial write "  118686.80 
+
+"        Rewrite "  167724.52 
+
+"           Read "  521204.50 
+
+"        Re-read "  524048.84 
+
+"    Random read "  491259.75 
+
+"   Random write "  137213.97 
+
+
+iozone test complete.

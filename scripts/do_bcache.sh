@@ -16,6 +16,16 @@ BCACHE_DEV=`ls /sys/block/ | grep bcache`
 echo "Bcache special device is dev/"$BCACHE_DEV"."
 echo $CACHE_SET_UUID > /sys/block/$BCACHE_DEV/bcache/attach
 
+# Customise bcache
+
+# Uncomment to enable writethrough for sequential reads
+#echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
+
+# Disable congested limits (i.e. when SSD is full with requests,
+# do not write them to the hard drive)
+echo 0 > /sys/block/$BCACHE_DEV/bcache/cache/congested_read_threshold_us
+echo 0 > /sys/block/$BCACHE_DEV/bcache/cache/congested_write_threshold_us
+
 # Mount the backing device and choose queueing strategy
 mkfs -t ext4 -q /dev/$BCACHE_DEV
 mount /dev/$BCACHE_DEV /media/bcache

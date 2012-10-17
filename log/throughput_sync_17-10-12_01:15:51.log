@@ -1,0 +1,89 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+Cache set has been formatted
+UUID:			cd3e56b4-e013-4d07-8388-b7e239b71539
+Set UUID:		18c4255f-1121-4dd3-a302-a0351267f73b
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
+Backing device has been formatted
+Cache set has been registered
+Backing device has been registered
+Bcache special device is dev/bcache2.
+Bcache special device has been formatted and mounted
+#################### GATE 3: BENCHMARKS ################
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.397 $
+		Compiled for 32 bit mode.
+		Build: linux 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer.
+	             Ben England.
+
+	Run began: Wed Oct 17 01:16:14 2012
+
+	File size set to 131072 KB
+	Record Size 4 KB
+	O_DIRECT feature enabled
+	Excel chart generation enabled
+	Command line used: iozone -i 0 -i 1 -i 2 -s 128M -r 4K -I -t 8 -Rb /home/brainfree/playground/io_tests/results/throughput_sync_64_17-10-12_01:15:51.ods
+	Output is in Kbytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 Kbytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Throughput test with 8 processes
+	Each process writes a 131072 Kbyte file in 4 Kbyte records
+
+	Children see throughput for  8 initial writers 	=  220910.57 KB/sec
+	Parent sees throughput for  8 initial writers 	=  181814.33 KB/sec
+	Min throughput per process 			=   24188.09 KB/sec 
+	Max throughput per process 			=   32462.87 KB/sec
+	Avg throughput per process 			=   27613.82 KB/sec
+	Min xfer 					=   97656.00 KB
+
+	Children see throughput for  8 rewriters 	=  335938.16 KB/sec
+	Parent sees throughput for  8 rewriters 	=  335531.22 KB/sec
+	Min throughput per process 			=   32088.02 KB/sec 
+	Max throughput per process 			=   49794.74 KB/sec
+	Avg throughput per process 			=   41992.27 KB/sec
+	Min xfer 					=   84460.00 KB
+
+	Children see throughput for  8 readers 		= 1009346.02 KB/sec
+	Parent sees throughput for  8 readers 		=  992917.86 KB/sec
+	Min throughput per process 			=  100208.05 KB/sec 
+	Max throughput per process 			=  275790.72 KB/sec
+	Avg throughput per process 			=  126168.25 KB/sec
+	Min xfer 					=   47632.00 KB
+
+	Children see throughput for 8 re-readers 	= 1020222.55 KB/sec
+	Parent sees throughput for 8 re-readers 	= 1009122.01 KB/sec
+	Min throughput per process 			=  120455.60 KB/sec 
+	Max throughput per process 			=  144583.16 KB/sec
+	Avg throughput per process 			=  127527.82 KB/sec
+	Min xfer 					=  107488.00 KB
+
+	Children see throughput for 8 random readers 	=  855335.43 KB/sec
+	Parent sees throughput for 8 random readers 	=  846554.72 KB/sec
+	Min throughput per process 			=   90068.46 KB/sec 
+	Max throughput per process 			=  203398.75 KB/sec
+	Avg throughput per process 			=  106916.93 KB/sec
+	Min xfer 					=   57740.00 KB

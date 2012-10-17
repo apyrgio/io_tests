@@ -1,0 +1,59 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+Cache set has been formatted
+UUID:			789ca43f-e813-47cf-89d0-54b71726126e
+Set UUID:		4314ca49-faf2-4145-af44-1ed402b29586
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
+Backing device has been formatted
+Cache set has been registered
+Backing device has been registered
+Bcache special device is dev/bcache1.
+Bcache special device has been formatted and mounted
+#################### GATE 3: BENCHMARKS ################
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.397 $
+		Compiled for 32 bit mode.
+		Build: linux 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer.
+	             Ben England.
+
+	Run began: Tue Oct 16 02:08:02 2012
+
+	Auto Mode
+	Cross over of record size disabled.
+	Using minimum file size of 131072 kilobytes.
+	Using maximum file size of 2097152 kilobytes.
+	Using Maximum Record Size 32 KB
+	O_DIRECT feature enabled
+	Excel chart generation enabled
+	Command line used: iozone -az -i 0 -i 1 -i 2 -n 128M -g 2G -q 32K -I -f /media/bcache/tmp -Rb /home/brainfree/playground/io_tests/results/sample_16-10-12_02:07:39.ods
+	Output is in Kbytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 Kbytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+                                                            random  random    bkwd   record   stride                                   
+              KB  reclen   write rewrite    read    reread    read   write    read  rewrite     read   fwrite frewrite   fread  freread
+          131072       4  123702  176367   574209   571239  535650  139727                                                          
+          131072       8

@@ -1,0 +1,117 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+Cache set has been formatted
+UUID:			1fe5da89-6704-41fc-b761-3f8d059e162e
+Set UUID:		a4339176-8e26-463b-af70-84f60827fc73
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
+Backing device has been formatted
+Cache set has been registered
+Backing device has been registered
+Bcache special device is dev/bcache1.
+Bcache special device has been formatted and mounted
+#################### GATE 3: BENCHMARKS ################
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.397 $
+		Compiled for 32 bit mode.
+		Build: linux 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer.
+	             Ben England.
+
+	Run began: Tue Oct 16 21:57:46 2012
+
+	File size set to 131072 KB
+	Record Size 4 KB
+	O_DIRECT feature enabled
+	Excel chart generation enabled
+	Command line used: iozone -i 0 -i 1 -i 2 -s 128M -r 4K -I -t 4 -Rb /home/brainfree/playground/io_tests/results/throughput_sync_4_16-10-12_21:57:24.ods
+	Output is in Kbytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 Kbytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Throughput test with 4 processes
+	Each process writes a 131072 Kbyte file in 4 Kbyte records
+
+	Children see throughput for  4 initial writers 	=  247965.37 KB/sec
+	Parent sees throughput for  4 initial writers 	=  218734.84 KB/sec
+	Min throughput per process 			=   56355.80 KB/sec 
+	Max throughput per process 			=   70093.59 KB/sec
+	Avg throughput per process 			=   61991.34 KB/sec
+	Min xfer 					=  105376.00 KB
+
+	Children see throughput for  4 rewriters 	=  407409.97 KB/sec
+	Parent sees throughput for  4 rewriters 	=  407006.08 KB/sec
+	Min throughput per process 			=   98741.91 KB/sec 
+	Max throughput per process 			=  104970.55 KB/sec
+	Avg throughput per process 			=  101852.49 KB/sec
+	Min xfer 					=  123348.00 KB
+
+	Children see throughput for  4 readers 		=  577815.64 KB/sec
+	Parent sees throughput for  4 readers 		=  575001.17 KB/sec
+	Min throughput per process 			=  136438.47 KB/sec 
+	Max throughput per process 			=  152599.50 KB/sec
+	Avg throughput per process 			=  144453.91 KB/sec
+	Min xfer 					=  116768.00 KB
+
+	Children see throughput for 4 re-readers 	= 1117708.53 KB/sec
+	Parent sees throughput for 4 re-readers 	= 1101784.00 KB/sec
+	Min throughput per process 			=  274993.75 KB/sec 
+	Max throughput per process 			=  290815.59 KB/sec
+	Avg throughput per process 			=  279427.13 KB/sec
+	Min xfer 					=  118600.00 KB
+
+	Children see throughput for 4 random readers 	=  953719.67 KB/sec
+	Parent sees throughput for 4 random readers 	=  947308.49 KB/sec
+	Min throughput per process 			=  236868.33 KB/sec 
+	Max throughput per process 			=  241293.80 KB/sec
+	Avg throughput per process 			=  238429.92 KB/sec
+	Min xfer 					=  127240.00 KB
+
+	Children see throughput for 4 random writers 	=  277214.81 KB/sec
+	Parent sees throughput for 4 random writers 	=  221850.63 KB/sec
+	Min throughput per process 			=   62812.44 KB/sec 
+	Max throughput per process 			=   84527.30 KB/sec
+	Avg throughput per process 			=   69303.70 KB/sec
+	Min xfer 					=   97404.00 KB
+
+
+
+"Throughput report Y-axis is type of test X-axis is number of processes"
+"Record size = 4 Kbytes "
+"Output is in Kbytes/sec"
+
+"  Initial write "  247965.37 
+
+"        Rewrite "  407409.97 
+
+"           Read "  577815.64 
+
+"        Re-read " 1117708.53 
+
+"    Random read "  953719.67 
+
+"   Random write "  277214.81 
+
+
+iozone test complete.

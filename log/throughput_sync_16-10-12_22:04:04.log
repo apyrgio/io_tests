@@ -1,0 +1,61 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+Cache set has been formatted
+UUID:			a7e70264-354c-45ee-b26c-a78986bc7ad5
+Set UUID:		98ee83e6-cd02-4c7e-929f-62712e3b44c3
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
+Backing device has been formatted
+Cache set has been registered
+Backing device has been registered
+Bcache special device is dev/bcache2.
+Bcache special device has been formatted and mounted
+#################### GATE 3: BENCHMARKS ################
+	Iozone: Performance Test of File I/O
+	        Version $Revision: 3.397 $
+		Compiled for 32 bit mode.
+		Build: linux 
+
+	Contributors:William Norcott, Don Capps, Isom Crawford, Kirby Collins
+	             Al Slater, Scott Rhine, Mike Wisner, Ken Goss
+	             Steve Landherr, Brad Smith, Mark Kelly, Dr. Alain CYR,
+	             Randy Dunlap, Mark Montague, Dan Million, Gavin Brebner,
+	             Jean-Marc Zucconi, Jeff Blomberg, Benny Halevy, Dave Boone,
+	             Erik Habbinga, Kris Strecker, Walter Wong, Joshua Root,
+	             Fabrice Bacchella, Zhenghua Xue, Qin Li, Darren Sawyer.
+	             Ben England.
+
+	Run began: Tue Oct 16 22:04:28 2012
+
+	File size set to 131072 KB
+	Record Size 4 KB
+	O_DIRECT feature enabled
+	Excel chart generation enabled
+	Command line used: iozone -i 0 -i 1 -i 2 -s 128M -r 4K -I -t 64 -Rb /home/brainfree/playground/io_tests/results/throughput_sync_64_16-10-12_22:04:04.ods
+	Output is in Kbytes/sec
+	Time Resolution = 0.000001 seconds.
+	Processor cache size set to 1024 Kbytes.
+	Processor cache line size set to 32 bytes.
+	File stride size set to 17 * record size.
+	Throughput test with 64 processes
+	Each process writes a 131072 Kbyte file in 4 Kbyte records
+
+	Children see throughput for 64 initial writers 	=   24322.92 KB/sec
+	Parent sees throughput for 64 initial writers 	=   20601.71 KB/sec
+	Min throughput per process 			=     350.62 KB/sec 
+	Max throughput per process 			=     416.92 KB/sec
+	Avg throughput per process 			=     380.05 KB/sec
+	Min xfer 					=  110432.00 KB
