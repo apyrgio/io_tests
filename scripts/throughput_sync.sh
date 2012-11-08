@@ -27,8 +27,8 @@ BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
 ###################### BENCHMARKS #########################
 echo "#################### GATE 3: BENCHMARKS ################"
 cd /media/bcache
-RES_FILE="$PROJECT_FOLDER"/results/"$SCRIPT_NAME"_64_"$CUR_DATE".ods
-iozone -i 0 -i 1 -i 2 -s 128M -r 4K -I -t 8 -Rb $RES_FILE
+RES_FILE="$PROJECT_FOLDER"/results/"$SCRIPT_NAME"_"$CUR_DATE".ods
+iozone -i 0 -i 1 -i 2 -i 8 -s 128M -r 4K -I -k 2 -t 2 -Rb $RES_FILE
 chown brainfree:brainfree $RES_FILE
 
 ################### STOP LOGGING #####################

@@ -19,7 +19,7 @@ echo $CACHE_SET_UUID > /sys/block/$BCACHE_DEV/bcache/attach
 # Customise bcache
 
 # Uncomment to enable writethrough for sequential reads
-#echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
+echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
 
 # Disable congested limits (i.e. when SSD is full with requests,
 # do not write them to the hard drive)

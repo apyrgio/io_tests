@@ -17,7 +17,7 @@ umount /media/bcache
 
 echo -n "Waiting for bcache to finish detaching... "
 while [ -e /sys/block/$BCACHE_DEV ]; do
-	sleep 3
+	sleep 1
 done
 echo "Done"
 
