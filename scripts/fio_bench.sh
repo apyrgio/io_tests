@@ -11,6 +11,7 @@ for IOENGINE in sync libaio posixaio ; do
 		SIZE=$[500 / $NUMPROCS]
 		export IOENGINE
 		export NUMPROCS
+		export SIZE
 		RES_FILE=fio_"$IOENGINE"_"$NUMPROCS"
 		fio fio/everything.ini > ../results/fio/"$RES_FILE"
 		chown brainfree:brainfree ../results/fio/"$RES_FILE"
