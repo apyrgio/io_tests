@@ -16,6 +16,6 @@ modprobe brd rd_size=$CACHE_SET_SIZE
 echo "Created ramdisks with size "$CACHE_SET_SIZE" bytes" 
 
 # Format (quietly) the backing device as ext3
-mkfs -t ext3 -q /dev/$BACKING_DEV
+mkfs -t ext2 -q /dev/$BACKING_DEV
 echo "Formated backing device as ext3"
 echo ""

@@ -1,0 +1,26 @@
+############### THE GATES ARE OPEN ###############
+
+################ GATE 1: DEVICES ################
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+
+Created ramdisks with size 2621440 bytes
+Formated backing device as ext3
+
+################## GATE 2: FORMATTING ##################
+Cache set has been formatted
+UUID:			49e12f57-cdbc-4d12-be69-223d1db4272b
+Set UUID:		5dba263d-250c-42d8-a988-610fc9d738ac
+nbuckets:		70160
+block_size:		8
+bucket_size:		1024
+nr_in_set:		1
+nr_this_dev:		0
+first_bucket:		1
+Backing device has been formatted
+Cache set has been registered
+Backing device has been registered
+Bcache virtual device is dev/bcache0.
+Bcache special device has been formatted and mounted
+#################### GATE 3: BENCHMARKS ################

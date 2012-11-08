@@ -1,0 +1,54 @@
+seq-write: (g=0): rw=write, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+seq-write: (g=0): rw=write, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+rand-write: (g=1): rw=randwrite, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+rand-write: (g=1): rw=randwrite, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+seq-read: (g=2): rw=read, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+seq-read: (g=2): rw=read, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+rand-read: (g=3): rw=randread, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+rand-read: (g=3): rw=randread, bs=4K-4K/4K-4K, ioengine=posixaio, iodepth=64
+2.0.8
+Starting 8 processes
+
+seq-write: (groupid=0, jobs=2): err= 0: pid=4263
+  write: io=512000KB, bw=76270KB/s, iops=19067 , runt=  6713msec
+  cpu          : usr=4.11%, sys=33.39%, ctx=243133, majf=0, minf=0
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=14.0%, 16=27.9%, 32=56.1%, >=64=1.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=98.3%, 8=0.1%, 16=0.1%, 32=0.0%, 64=1.7%, >=64=0.0%
+     issued    : total=r=0/w=0/d=128000, short=r=0/w=0/d=0
+rand-write: (groupid=1, jobs=2): err= 0: pid=4267
+  write: io=512000KB, bw=69859KB/s, iops=17464 , runt=  7329msec
+  cpu          : usr=4.08%, sys=26.35%, ctx=242071, majf=0, minf=0
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=13.9%, 16=27.8%, 32=56.1%, >=64=2.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=98.3%, 8=0.1%, 16=0.1%, 32=0.0%, 64=1.7%, >=64=0.0%
+     issued    : total=r=0/w=0/d=128000, short=r=0/w=0/d=0
+seq-read: (groupid=2, jobs=2): err= 0: pid=4271
+  read : io=512000KB, bw=397824KB/s, iops=99456 , runt=  1287msec
+  cpu          : usr=5.96%, sys=65.86%, ctx=24758, majf=0, minf=0
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.2%, 8=13.6%, 16=27.1%, 32=56.5%, >=64=2.5%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=97.9%, 8=0.4%, 16=0.1%, 32=0.1%, 64=1.7%, >=64=0.0%
+     issued    : total=r=128000/w=0/d=0, short=r=0/w=0/d=0
+rand-read: (groupid=3, jobs=2): err= 0: pid=4275
+  read : io=512000KB, bw=384673KB/s, iops=96168 , runt=  1331msec
+  cpu          : usr=5.56%, sys=70.98%, ctx=19378, majf=0, minf=0
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.2%, 8=13.5%, 16=27.0%, 32=56.6%, >=64=2.5%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=97.9%, 8=0.4%, 16=0.1%, 32=0.1%, 64=1.6%, >=64=0.0%
+     issued    : total=r=128000/w=0/d=0, short=r=0/w=0/d=0
+
+Run status group 0 (all jobs):
+  WRITE: io=512000KB, aggrb=76269KB/s, minb=76269KB/s, maxb=76269KB/s, mint=6713msec, maxt=6713msec
+
+Run status group 1 (all jobs):
+  WRITE: io=512000KB, aggrb=69859KB/s, minb=69859KB/s, maxb=69859KB/s, mint=7329msec, maxt=7329msec
+
+Run status group 2 (all jobs):
+   READ: io=512000KB, aggrb=397824KB/s, minb=397824KB/s, maxb=397824KB/s, mint=1287msec, maxt=1287msec
+
+Run status group 3 (all jobs):
+   READ: io=512000KB, aggrb=384673KB/s, minb=384673KB/s, maxb=384673KB/s, mint=1331msec, maxt=1331msec
+
+Disk stats (read/write):
+  bcache0: ios=0/0, merge=0/0, ticks=0/0, in_queue=0, util=0.00%

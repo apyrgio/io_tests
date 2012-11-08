@@ -8,7 +8,7 @@ echo "0" > /sys/block/sda/queue/rotational
 
 for IOENGINE in sync libaio posixaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
-		SIZE=$[500 / $NUMPROCS]
+		SIZE="$[500 / $NUMPROCS]"M
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
