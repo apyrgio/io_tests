@@ -29,7 +29,7 @@ echo "#################### GATE 3: BENCHMARKS ################"
 
 for IOENGINE in sync libaio posixaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
-		SIZE="$[500 / $NUMPROCS]"M
+		SIZE="$[512 / $NUMPROCS]"M
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
