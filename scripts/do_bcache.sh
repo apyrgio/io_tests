@@ -18,8 +18,8 @@ echo $CACHE_SET_UUID > /sys/block/$BCACHE_DEV/bcache/attach
 
 # Customise bcache
 
-# Uncomment to enable writethrough for sequential reads
-# echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
+# Comment to enable writethrough for sequential reads
+echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
 
 # Disable congested limits (i.e. when SSD is full with requests,
 # do not write them to the hard drive)
@@ -33,4 +33,4 @@ echo "0" > /sys/block/sda/queue/rotational
 # Mount the virtual device
 mkfs -t ext2 -q /dev/$BCACHE_DEV
 mount -t ext2 -o noatime /dev/$BCACHE_DEV /media/bcache
-echo "Bcache special device has been formatted and mounted"
+echo "Bcache virtual device has been formatted and mounted"

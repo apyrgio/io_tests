@@ -46,8 +46,10 @@ if [[ $UTILITY = "fio" ]]; then
 			export NUMPROCS
 			export SIZE
 			RES_FILE="$PROJECT_FOLDER"/results/fio_"$TYPE"_"$IOENGINE""$NUMPROCS"
-			fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini #> $RES_FILE
-			#chown brainfree:brainfree $RES_FILE
+			echo -n "fio: Benchmarking $TYPE using $IOENGINE engine and $NUMPROCS threads... "
+			fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > $RES_FILE
+			chown brainfree:brainfree $RES_FILE
+			echo "done."
 		done
 	done
 elif [[ $UTILITY = "iozone" ]]; then #Currently doing only synchronous read/writes

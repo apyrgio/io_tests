@@ -27,14 +27,14 @@ BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
 ###################### BENCHMARKS #########################
 echo "#################### GATE 3: BENCHMARKS ################"
 
-for IOENGINE in sync libaio posixaio ; do
+for IOENGINE in sync libaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
 		SIZE="$[512 / $NUMPROCS]"M
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
-		RES_FILE="$PROJECT_FOLDER"/results/fio/"$SCRIPT_NAME"_"$IOENGINE""$NUMPROCS"_"$CUR_DATE"
-		fio "$PROJECT_FOLDER"/scripts/fio/everything.ini > "$RES_FILE"
+		RES_FILE="$PROJECT_FOLDER"/results/"$SCRIPT_NAME"_"$IOENGINE""$NUMPROCS"
+		fio --output=$RES_FILE "$PROJECT_FOLDER"/scripts/fio/benchmark.ini
 		chown brainfree:brainfree "$RES_FILE"
 	done
 done
