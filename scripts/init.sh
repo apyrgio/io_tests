@@ -1,21 +1,27 @@
 #! /bin/bash
 
-################## ECHO OUT PARAMETERS ###############
-echo "############### THE GATES ARE OPEN ###############"
+#######################
+# ECHO OUT PARAMETERS #
+#######################
+echo "${txtred}######### THE GATES ARE OPEN #########${txtrst}"
 echo ""
-echo "################ GATE 1: DEVICES ################"
-echo "Cache set: /dev/"$CACHE_SET
-echo "Backing device: /dev/"$BACKING_DEV
-echo ""
+echo "${txtred}######### GATE 1: DEVICES #########${txtrst}"
+echo "Cache set: ${txtgrn}/dev/${CACHE_SET}${txtrst}"
+echo "Backing device: ${txtgrn}/dev/${BACKING_DEV}${txtrst}"
 echo ""
 
-################## CREATE DEVICES ####################
+##################
+# CREATE DEVICES #
+##################
 
 # Create 16 ramdisks with 2,5GB size each
+echo -n "Create ramdisks with size "$CACHE_SET_SIZE" bytes... "
 modprobe brd rd_size=$CACHE_SET_SIZE
-echo "Created ramdisks with size "$CACHE_SET_SIZE" bytes" 
+echo "${txtgrn}done.${txtrst}"
 
 # Format (quietly) the backing device as ext3
+echo -n "Format backing device as ext3... "
 mkfs -t ext2 -q /dev/$BACKING_DEV
-echo "Formated backing device as ext3"
+echo "${txtgrn}done.${txtrst}"
+
 echo ""

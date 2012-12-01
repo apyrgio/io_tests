@@ -15,26 +15,39 @@ CACHE_SET_OPTS=
 BACKING_DEV_OPTS=--writeback
 DEVICES_SCRIPT="$PROJECT_FOLDER"/scripts/init.sh
 BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
+txtrst=$(tput sgr0) 	# Reset text color
+txtred=$(tput setaf 1) 	# Make text red
+txtgrn=$(tput setaf 2) 	# Make text green
 
 ################# PREPARE AND START BCACHE ###############
 
-# Prepare devices
-. $DEVICES_SCRIPT
+BCACHE_DEV=`ls /sys/block/ | grep bcache`
+if [ -z "$BCACHE_DEV" ]; then
+	# Prepare devices
+	. $DEVICES_SCRIPT
 
-# Format, attach and mount the devices
-. $BCACHE_SCRIPT
+	# Format, attach and mount the devices
+	. $BCACHE_SCRIPT
+else
+	echo -e "Bcache is running\n"
+fi
 
-###################### BENCHMARKS #########################
-echo "#################### GATE 3: BENCHMARKS ################"
+##############
+# BENCHMARKS #
+##############
+
+echo "${txtred}######### GATE 3: BENCHMARKS #########${txtrst}"
 
 for IOENGINE in sync libaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
-		SIZE="$[512 / $NUMPROCS]"M
+		SIZE="$[2048 / $NUMPROCS]"M
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
 		RES_FILE="$PROJECT_FOLDER"/results/"$SCRIPT_NAME"_"$IOENGINE""$NUMPROCS"
+		echo -n "fio: Benchmarking bcache using $IOENGINE engine and $NUMPROCS threads... "
 		fio --output=$RES_FILE "$PROJECT_FOLDER"/scripts/fio/benchmark.ini
+		echo "${txtgrn}done.${txtrst}"
 		chown brainfree:brainfree "$RES_FILE"
 	done
 done

@@ -14,6 +14,9 @@ CACHE_SET_OPTS=
 BACKING_DEV_OPTS=--writeback
 DEVICES_SCRIPT=/home/brainfree/playground/io_tests/scripts/init.sh
 BCACHE_SCRIPT=/home/brainfree/playground/io_tests/scripts/do_bcache.sh
+txtrst=$(tput sgr0) 	# Reset text color
+txtred=$(tput setaf 1) 	# Make text red
+txtgrn=$(tput setaf 2) 	# Make text green
 
 ################# PREPARE AND START BCACHE ###############
 
@@ -24,7 +27,7 @@ BCACHE_SCRIPT=/home/brainfree/playground/io_tests/scripts/do_bcache.sh
 . $BCACHE_SCRIPT
 
 ###################### BENCHMARKS #########################
-echo "#################### GATE 3: BENCHMARKS ################"
+echo "${txtred}######### GATE 3: BENCHMARKS #########${txtrst}"
 echo "(no benchmark actually...)"
 ################### STOP LOGGING #####################
 ) 2>&1 | tee $LOGFILE
