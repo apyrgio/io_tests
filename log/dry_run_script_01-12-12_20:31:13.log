@@ -1,0 +1,21 @@
+######### THE GATES ARE OPEN #########
+
+######### GATE 1: DEVICES #########
+Cache set: /dev/ram0
+Backing device: /dev/sda7
+
+Create ramdisks with size 2621440 bytes... done.
+Format backing device as ext3... done.
+
+######### GATE 2: FORMATTING #########
+
+Format cache set... done.
+Format backing device... done.
+Register cache set... done.
+Register backing device... done.
+Bcache virtual device is: dev/bcache1.
+Attach ram0 to bcache1... done.
+Format and mount bcache's virtual device... done.
+
+#################### GATE 3: BENCHMARKS ################
+(no benchmark actually...)

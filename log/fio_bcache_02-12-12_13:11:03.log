@@ -1,0 +1,11 @@
+Bcache is running
+
+[31m######### GATE 3: BENCHMARKS #########(B[m
+fio: Benchmarking bcache using sync engine and 1 threads... [32mdone.(B[m
+fio: Benchmarking bcache using sync engine and 2 threads... [32mdone.(B[m
+fio: Benchmarking bcache using sync engine and 4 threads... [32mdone.(B[m
+fio: Benchmarking bcache using sync engine and 8 threads... [32mdone.(B[m
+fio: Benchmarking bcache using libaio engine and 1 threads... [32mdone.(B[m
+fio: Benchmarking bcache using libaio engine and 2 threads... [32mdone.(B[m
+fio: Benchmarking bcache using libaio engine and 4 threads... [32mdone.(B[m
+fio: Benchmarking bcache using libaio engine and 8 threads... [32mdone.(B[m

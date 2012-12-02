@@ -1,0 +1,4 @@
+Bcache is running
+
+[31m######### GATE 3: BENCHMARKS #########(B[m
+fio: Benchmarking bcache using sync engine and 1 threads... 

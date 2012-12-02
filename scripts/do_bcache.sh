@@ -30,11 +30,11 @@ echo -n "Attach ${CACHE_SET} to ${BCACHE_DEV}... "
 echo $CACHE_SET_UUID > /sys/block/$BCACHE_DEV/bcache/attach
 echo "${txtgrn}done.${txtrst}"
 
-######## Customizations #########
+##################
+# Customizations #
+##################
 
-##########
-# Bcache #
-##########
+# Bcache
 
 # Comment the following line to enable writethrough for sequential reads
 echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
@@ -46,9 +46,7 @@ echo 40 > /sys/block/$BCACHE_DEV/bcache/writeback_percent
 echo 0 > /sys/block/$BCACHE_DEV/bcache/cache/congested_read_threshold_us
 echo 0 > /sys/block/$BCACHE_DEV/bcache/cache/congested_write_threshold_us
 
-###########
-# Devices #
-###########
+# Devices
 
 echo noop > /sys/block/${CACHE_SET}/queue/scheduler
 

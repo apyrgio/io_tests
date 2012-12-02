@@ -38,9 +38,11 @@ fi
 
 echo "${txtred}######### GATE 3: BENCHMARKS #########${txtrst}"
 
+cd /media/bcache
+rm -rf /media/bcache/*
 for IOENGINE in sync libaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
-		SIZE="$[2048 / $NUMPROCS]"M
+		SIZE="$[512 / $NUMPROCS]"M
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
