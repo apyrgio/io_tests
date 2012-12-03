@@ -42,7 +42,7 @@ if [[ $UTILITY = "fio" ]]; then
 	for IOENGINE in sync libaio ; do
 		for NUMPROCS in 1 2 4 8 ; do
 			SIZE="$[512 / $NUMPROCS]"M
-			export IOENGINE	
+			export IOENGINE
 			export NUMPROCS
 			export SIZE
 			RES_FILE="$PROJECT_FOLDER"/results/fio_"$TYPE"_"$IOENGINE""$NUMPROCS"
@@ -62,4 +62,3 @@ elif [[ $UTILITY = "iozone" ]]; then #Currently doing only synchronous read/writ
 else
 	echo "Unsupported utility"
 fi
-

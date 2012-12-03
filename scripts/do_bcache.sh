@@ -40,6 +40,7 @@ echo "${txtgrn}done.${txtrst}"
 echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
 
 echo 40 > /sys/block/$BCACHE_DEV/bcache/writeback_percent
+#echo 0 > /sys/block/$BCACHE_DEV/bcache/writeback_delay
 
 # Disable congested limits (i.e. when SSD is full with requests,
 # do not write them to the hard drive)

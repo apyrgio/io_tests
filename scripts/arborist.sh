@@ -28,7 +28,8 @@ cache_stats(){
 }
 
 dir_stats(){
-	ls -l -h /media/bcache > /tmp/dir_stats.tmp.1
+	ls -oghAt --time-style=+"%d-%m-%y_%T" /media/bcache > /tmp/dir_stats.tmp.1
+	sed -i 's/^.\{13\}//' /tmp/dir_stats.tmp.1
 	sed -e '1q' /tmp/dir_stats.tmp.1 > /tmp/dir_stats.tmp.2
 	sed -i '1d' /tmp/dir_stats.tmp.1
 	echo -e "\n${txtbrn}+           ${txtgrn}Stats for /media/bcache         ${txtbrn}+"
