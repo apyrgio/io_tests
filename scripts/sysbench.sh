@@ -10,7 +10,7 @@ if [[ -z $UTILITY ]] || [[ -z $TYPE ]]; then
 fi
 
 mkdir -p /mnt/sysbench
-umount /mnt/sysbench
+umount /mnt/sysbench 2>/dev/null
 
 echo "Inititate benchmarking of $TYPE with the $UTILITY tool."
 
@@ -38,6 +38,7 @@ if [[ $TYPE = "hdd" ]]; then
 fi
 
 cd /mnt/sysbench
+rm -rf /mnt/sysbench/*
 if [[ $UTILITY = "fio" ]]; then
 	for IOENGINE in sync libaio ; do
 		for NUMPROCS in 1 2 4 8 ; do
@@ -49,6 +50,7 @@ if [[ $UTILITY = "fio" ]]; then
 			echo -n "fio: Benchmarking $TYPE using $IOENGINE engine and $NUMPROCS threads... "
 			fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > $RES_FILE
 			chown brainfree:brainfree $RES_FILE
+			rm -rf /mnt/sysbench/*
 			echo "done."
 		done
 	done

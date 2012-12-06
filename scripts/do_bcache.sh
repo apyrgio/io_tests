@@ -6,8 +6,7 @@
 
 # Format devices
 
-echo "${txtred}######### GATE 2: FORMATTING #########${txtrst}"
-echo ""
+echo "${txtred}######### GATE 2: BCACHE #########${txtrst}"
 echo -n "Format cache set... "
 CACHE_SET_UUID=`make-bcache -C $CACHE_SET_OPTS /dev/$CACHE_SET | \
    	grep 'Set UUID' | sed -e 's/Set UUID://' -e 's/^[ \t]*//'`

@@ -42,8 +42,8 @@ PROJECT_FOLDER=/home/brainfree/playground/io_tests
 CACHE_SET=ram0			# The SSD
 BACKING_DEV=sda7		# The RAID
 CACHE_SET_SIZE=2621440	# Cache set size in KB (for ramdisk)
-CACHE_SET_OPTS=
-BACKING_DEV_OPTS=--writeback
+CACHE_SET_OPTS="-b 1024k"
+BACKING_DEV_OPTS="--writeback"
 DEVICES_SCRIPT="$PROJECT_FOLDER"/scripts/init.sh
 BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
 

@@ -5,7 +5,7 @@
 #######################
 echo "${txtred}######### THE GATES ARE OPEN #########${txtrst}"
 echo ""
-echo "${txtred}######### GATE 1: DEVICES #########${txtrst}"
+echo "${txtred}######### GATE 1: RAW DEVICES #########${txtrst}"
 echo "Cache set: ${txtgrn}/dev/${CACHE_SET}${txtrst}"
 echo "Backing device: ${txtgrn}/dev/${BACKING_DEV}${txtrst}"
 echo ""
