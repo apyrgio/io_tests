@@ -1,0 +1,70 @@
+seq-write: (g=0): rw=write, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=128
+rand-write: (g=1): rw=randwrite, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=128
+seq-read: (g=2): rw=read, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=128
+rand-read: (g=3): rw=randread, bs=4K-4K/4K-4K, ioengine=libaio, iodepth=128
+Starting 4 processes
+seq-write: Laying out IO file(s) (1 file(s) / 512MB)
+
+seq-write: (groupid=0, jobs=1): err= 0: pid=7667
+  write: io=524288KB, bw=253892KB/s, iops=63473, runt=  2065msec
+    slat (usec): min=9, max=11641, avg=14.23, stdev=45.46
+    clat (usec): min=317, max=14121, avg=2000.02, stdev=550.94
+    bw (KB/s) : min=244576, max=260888, per=99.90%, avg=253636.75, stdev=6753.22
+  cpu          : usr=9.11%, sys=90.70%, ctx=41, majf=0, minf=24
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=0/131072, short=0/0
+     lat (usec): 500=0.01%, 750=0.01%, 1000=0.02%
+     lat (msec): 2=73.07%, 4=26.65%, 10=0.04%, 20=0.19%
+rand-write: (groupid=1, jobs=1): err= 0: pid=7716
+  write: io=524288KB, bw=311520KB/s, iops=77879, runt=  1683msec
+    slat (usec): min=7, max=11270, avg=10.27, stdev=37.19
+    clat (usec): min=298, max=14162, avg=1630.42, stdev=568.35
+    bw (KB/s) : min=291688, max=327192, per=99.91%, avg=311224.00, stdev=18018.92
+  cpu          : usr=12.84%, sys=80.86%, ctx=418, majf=0, minf=23
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=0/131072, short=0/0
+     lat (usec): 500=0.01%, 750=0.01%, 1000=0.01%
+     lat (msec): 2=91.84%, 4=7.67%, 10=0.38%, 20=0.10%
+seq-read: (groupid=2, jobs=1): err= 0: pid=7764
+  read : io=524288KB, bw=186380KB/s, iops=46595, runt=  2813msec
+    slat (usec): min=7, max=16323, avg=13.22, stdev=45.53
+    clat (usec): min=1189, max=18968, avg=2730.23, stdev=545.82
+    bw (KB/s) : min=181096, max=187768, per=99.93%, avg=186254.40, stdev=2891.82
+  cpu          : usr=9.67%, sys=68.42%, ctx=18109, majf=0, minf=153
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=131072/0, short=0/0
+
+     lat (msec): 2=0.41%, 4=99.27%, 10=0.22%, 20=0.10%
+rand-read: (groupid=3, jobs=1): err= 0: pid=7834
+  read : io=524288KB, bw=180168KB/s, iops=45041, runt=  2910msec
+    slat (usec): min=6, max=15079, avg=13.31, stdev=54.11
+    clat (usec): min=399, max=18170, avg=2825.32, stdev=632.65
+    bw (KB/s) : min=178536, max=183720, per=99.94%, avg=180062.40, stdev=2079.23
+  cpu          : usr=10.73%, sys=66.55%, ctx=19217, majf=0, minf=152
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, >=64=100.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=131072/0, short=0/0
+     lat (usec): 500=0.01%, 750=0.01%, 1000=0.01%
+     lat (msec): 2=0.31%, 4=99.45%, 10=0.04%, 20=0.19%
+
+Run status group 0 (all jobs):
+  WRITE: io=524288KB, aggrb=253892KB/s, minb=259985KB/s, maxb=259985KB/s, mint=2065msec, maxt=2065msec
+
+Run status group 1 (all jobs):
+  WRITE: io=524288KB, aggrb=311519KB/s, minb=318996KB/s, maxb=318996KB/s, mint=1683msec, maxt=1683msec
+
+Run status group 2 (all jobs):
+   READ: io=524288KB, aggrb=186380KB/s, minb=190853KB/s, maxb=190853KB/s, mint=2813msec, maxt=2813msec
+
+Run status group 3 (all jobs):
+   READ: io=524288KB, aggrb=180167KB/s, minb=184491KB/s, maxb=184491KB/s, mint=2910msec, maxt=2910msec
+
+Disk stats (read/write):
+  bcache3: ios=0/0, merge=0/0, ticks=0/0, in_queue=0, util=0.00%

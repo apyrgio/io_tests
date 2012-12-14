@@ -54,8 +54,8 @@ echo noop > /sys/block/${CACHE_SET}/queue/scheduler
 
 # Mount the virtual device
 echo -n "Format and mount bcache's virtual device... "
-mkfs -t ext2 -q /dev/$BCACHE_DEV
-mount -t ext2 -o noatime /dev/$BCACHE_DEV /media/bcache
+mkfs.ext4 -F -q /dev/$BCACHE_DEV
+mount -t ext4 -o noatime /dev/$BCACHE_DEV /mnt/bcache
 echo "${txtgrn}done.${txtrst}"
 
 echo ""
