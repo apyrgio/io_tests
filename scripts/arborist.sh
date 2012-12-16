@@ -23,7 +23,7 @@ cache_stats(){
 	BYPASSED=`cat /sys/block/${CACHE_DEV}/bcache/set/stats_total/bypassed`
 	AVAIL=`cat /sys/block/${CACHE_DEV}/bcache/set/cache_available_percent`
 	RATIO=`cat /sys/block/${CACHE_DEV}/bcache/set/stats_total/cache_hit_ratio`
-	echo -e "$CACHE_DEV [$STATE]\t$DIRTY\t$WRITTEN\t$BYPASSED\t$AVAIL\t$RATIO"
+	echo -e "$CACHE_DEV\t [$STATE]\t$DIRTY\t$WRITTEN\t$BYPASSED\t$AVAIL\t$RATIO"
 	LC=$[LC+1]
 }
 
@@ -32,7 +32,7 @@ dir_stats(){
 	sed -i 's/^.\{13\}//' /tmp/dir_stats.tmp.1
 	sed -e '1q' /tmp/dir_stats.tmp.1 > /tmp/dir_stats.tmp.2
 	sed -i '1d' /tmp/dir_stats.tmp.1
-	echo -e "\n${txtbrn}+           ${txtgrn}Stats for /media/bcache         ${txtbrn}+"
+	echo -e "\n${txtbrn}+           ${txtgrn}Stats for /mnt/bcache           ${txtbrn}+"
 	echo "+-------------------------------------------+${txtrst}"
 	cat /tmp/dir_stats.tmp.1
 	echo "${txtbrn}+-------------------------------------------+${txtrst}"
@@ -41,6 +41,13 @@ dir_stats(){
 	LC=$[LC+5+LC2]
 }
 
+io_stat(){
+	echo ""
+	tail -n 5 /tmp/io_stat.tmp
+	LC=$[LC+6]
+}
+
+iostat -m 1 sdb sdc > /tmp/io_stat.tmp &
 CACHE_DEV=sdb
 echo -e "${txtgrn}\t\tDirty\tWritten\tBypassed Avail.\tRatio${txtrst}"
 
@@ -49,7 +56,8 @@ while [ true ]; do
 	BCACHE_DEV=`ls /sys/block/ | grep bcache`
 	bcache_stats 2>/dev/null
 	cache_stats 2>/dev/null
-	dir_stats 2>/dev/null
+	#dir_stats 2>/dev/null
+	io_stat
 	sleep 1		# Sleep for a very small ammount of time
 	tput cuu $LC
 	tput ed

@@ -76,7 +76,7 @@ rm -rf /mnt/bcache/*
 for IOENGINE in sync libaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
 		wait_dirty	#will do only when -w or --wait option is given
-		SIZE="$[512 / $NUMPROCS]"M
+		SIZE="$[8 / $NUMPROCS]"G
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
