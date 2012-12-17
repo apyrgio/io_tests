@@ -14,10 +14,10 @@ fi
 
 echo 1 > /sys/block/$BCACHE_DEV/bcache/detach
 echo 1 > /sys/block/$BCACHE_DEV/bcache/stop
-echo 1 > /sys/block/ram0/bcache/set/stop
+echo 1 > /sys/block/sdb/bcache/set/stop
 
 ################### CLEAR DEVICES #######################
-umount /media/bcache
+umount /mnt/bcache
 
 echo -n "Waiting for bcache to finish detaching... "
 while [ -e /sys/block/$BCACHE_DEV ]; do

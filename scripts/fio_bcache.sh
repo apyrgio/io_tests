@@ -38,11 +38,11 @@ done
 
 SCRIPT_NAME=`echo "${0##*/}" | sed 's/.sh//'`
 CUR_DATE=`date +"%d-%m-%y_%T"`
-PROJECT_FOLDER=/home/brainfree/playground/io_tests
-CACHE_SET=ram0			# The SSD
-BACKING_DEV=sda7		# The RAID
+PROJECT_FOLDER=/root/playground/io_tests
+CACHE_SET=sdb			# The SSD
+BACKING_DEV=sdc			# The RAID
 CACHE_SET_SIZE=2621440	# Cache set size in KB (for ramdisk)
-CACHE_SET_OPTS="-b 1024k"
+CACHE_SET_OPTS="-b 512k"
 BACKING_DEV_OPTS="--writeback"
 DEVICES_SCRIPT="$PROJECT_FOLDER"/scripts/init.sh
 BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
@@ -69,20 +69,25 @@ fi
 
 echo "${txtred}######### GATE 3: BENCHMARKS #########${txtrst}"
 
-cd /media/bcache
-rm -rf /media/bcache/*
+mkdir -p /mnt/bcache
+cd /mnt/bcache
+rm -rf /mnt/bcache/*
+
 for IOENGINE in sync libaio ; do
 	for NUMPROCS in 1 2 4 8 ; do
 		wait_dirty	#will do only when -w or --wait option is given
-		SIZE="$[512 / $NUMPROCS]"M
+		SIZE="$[8 / $NUMPROCS]"G
+		TIME=5m
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
+		export TIME
 		RES_FILE="$PROJECT_FOLDER"/results/"$SCRIPT_NAME"_"$IOENGINE""$NUMPROCS"
 		echo -n "fio: Benchmarking bcache using $IOENGINE engine and $NUMPROCS threads... "
 		fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > $RES_FILE
 		echo "${txtgrn}done.${txtrst}"
-		rm -rf /media/bcache/*
-		chown brainfree:brainfree "$RES_FILE"
+		rm -rf /mnt/bcache/*
 	done
 done
+
+echo "Benchmarks completed."
