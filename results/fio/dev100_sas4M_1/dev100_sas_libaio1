@@ -1,0 +1,71 @@
+seq-write: (g=0): rw=write, bs=4M-4M/4M-4M, ioengine=libaio, iodepth=128
+rand-write: (g=1): rw=randwrite, bs=4M-4M/4M-4M, ioengine=libaio, iodepth=128
+seq-read: (g=2): rw=read, bs=4M-4M/4M-4M, ioengine=libaio, iodepth=128
+rand-read: (g=3): rw=randread, bs=4M-4M/4M-4M, ioengine=libaio, iodepth=128
+Starting 4 processes
+seq-write: Laying out IO file(s) (1 file(s) / 8192MB)
+
+seq-write: (groupid=0, jobs=1): err= 0: pid=26931
+  write: io=8192MB, bw=505642KB/s, iops=123, runt= 16590msec
+    slat (usec): min=158, max=312568, avg=8091.10, stdev=36779.44
+    clat (msec): min=12, max=2176, avg=1004.01, stdev=395.45
+    bw (KB/s) : min= 5417, max=678318, per=95.80%, avg=484404.39, stdev=176946.44
+  cpu          : usr=0.19%, sys=2.75%, ctx=364, majf=0, minf=24
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.2%, 8=0.4%, 16=0.8%, 32=1.6%, >=64=96.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=99.9%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=0/2048, short=0/0
+
+     lat (msec): 20=0.10%, 250=1.03%, 500=2.00%, 750=7.47%, 1000=69.97%
+     lat (msec): 2000=16.85%, >=2000=2.59%
+rand-write: (groupid=1, jobs=1): err= 0: pid=26960
+  write: io=8192MB, bw=436112KB/s, iops=106, runt= 19235msec
+    slat (usec): min=138, max=146601, avg=9284.58, stdev=18181.54
+    clat (msec): min=210, max=1512, avg=1182.43, stdev=223.10
+    bw (KB/s) : min=    0, max=581632, per=21.37%, avg=93184.78, stdev=174793.27
+  cpu          : usr=0.17%, sys=2.75%, ctx=526, majf=0, minf=26
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.2%, 8=0.4%, 16=0.8%, 32=1.6%, >=64=96.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=99.9%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=0/2048, short=0/0
+
+     lat (msec): 250=0.39%, 500=4.98%, 750=2.59%, 1000=3.47%, 2000=88.57%
+seq-read: (groupid=2, jobs=1): err= 0: pid=26991
+  read : io=8192MB, bw=986MB/s, iops=246, runt=  8310msec
+    slat (usec): min=266, max=137754, avg=3994.68, stdev=9500.77
+    clat (msec): min=120, max=1282, avg=502.18, stdev=142.46
+    bw (KB/s) : min=    0, max=1448980, per=10.64%, avg=107444.68, stdev=319816.22
+  cpu          : usr=0.00%, sys=11.79%, ctx=417, majf=0, minf=131097
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.2%, 8=0.4%, 16=0.8%, 32=1.6%, >=64=96.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=99.9%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=2048/0, short=0/0
+
+     lat (msec): 250=1.27%, 500=55.71%, 750=36.62%, 1000=6.05%, 2000=0.34%
+rand-read: (groupid=3, jobs=1): err= 0: pid=27004
+  read : io=8192MB, bw=743341KB/s, iops=181, runt= 11285msec
+    slat (usec): min=324, max=43621, avg=5463.41, stdev=9290.05
+    clat (msec): min=86, max=926, avg=679.44, stdev=93.11
+    bw (KB/s) : min= 5720, max=823953, per=96.17%, avg=714856.14, stdev=165100.28
+  cpu          : usr=0.00%, sys=8.33%, ctx=529, majf=0, minf=131096
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.2%, 8=0.4%, 16=0.8%, 32=1.6%, >=64=96.9%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=99.9%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=2048/0, short=0/0
+
+     lat (msec): 100=0.10%, 250=1.17%, 500=2.54%, 750=88.38%, 1000=7.81%
+
+Run status group 0 (all jobs):
+  WRITE: io=8192MB, aggrb=505642KB/s, minb=517777KB/s, maxb=517777KB/s, mint=16590msec, maxt=16590msec
+
+Run status group 1 (all jobs):
+  WRITE: io=8192MB, aggrb=436111KB/s, minb=446578KB/s, maxb=446578KB/s, mint=19235msec, maxt=19235msec
+
+Run status group 2 (all jobs):
+   READ: io=8192MB, aggrb=986MB/s, minb=1009MB/s, maxb=1009MB/s, mint=8310msec, maxt=8310msec
+
+Run status group 3 (all jobs):
+   READ: io=8192MB, aggrb=743341KB/s, minb=761181KB/s, maxb=761181KB/s, mint=11285msec, maxt=11285msec
+
+Disk stats (read/write):
+  sdc: ios=32434/33218, merge=0/694, ticks=2774572/4021536, in_queue=6802872, util=94.47%

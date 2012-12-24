@@ -1,0 +1,72 @@
+seq-write: (g=0): rw=write, bs=512K-512K/512K-512K, ioengine=libaio, iodepth=128
+rand-write: (g=1): rw=randwrite, bs=512K-512K/512K-512K, ioengine=libaio, iodepth=128
+seq-read: (g=2): rw=read, bs=512K-512K/512K-512K, ioengine=libaio, iodepth=128
+rand-read: (g=3): rw=randread, bs=512K-512K/512K-512K, ioengine=libaio, iodepth=128
+Starting 4 processes
+seq-write: Laying out IO file(s) (1 file(s) / 8192MB)
+
+seq-write: (groupid=0, jobs=1): err= 0: pid=21087
+  write: io=8192MB, bw=434958KB/s, iops=849, runt= 19286msec
+    slat (usec): min=43, max=170163, avg=1172.14, stdev=1783.78
+    clat (usec): min=23, max=189435, avg=147738.36, stdev=18674.47
+    bw (KB/s) : min=242688, max=581632, per=99.37%, avg=432198.11, stdev=55841.65
+  cpu          : usr=0.75%, sys=4.58%, ctx=16057, majf=0, minf=24
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.2%, >=64=99.6%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=0/16384, short=0/0
+     lat (usec): 50=0.01%
+     lat (msec): 2=0.01%, 4=0.01%, 10=0.04%, 20=0.05%, 50=0.16%
+     lat (msec): 100=0.22%, 250=99.51%
+rand-write: (groupid=1, jobs=1): err= 0: pid=21423
+  write: io=8192MB, bw=449526KB/s, iops=877, runt= 18661msec
+    slat (usec): min=25, max=137559, avg=69.81, stdev=1721.13
+    clat (msec): min=4, max=308, avg=145.68, stdev=30.89
+    bw (KB/s) : min=243712, max=580942, per=100.28%, avg=450789.19, stdev=50784.48
+  cpu          : usr=0.56%, sys=4.91%, ctx=16010, majf=0, minf=27
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.2%, >=64=99.6%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=0/16384, short=0/0
+
+     lat (msec): 10=0.23%, 20=0.28%, 50=0.95%, 100=2.97%, 250=93.26%
+     lat (msec): 500=2.31%
+seq-read: (groupid=2, jobs=1): err= 0: pid=21721
+  read : io=8192MB, bw=1198MB/s, iops=2395, runt=  6840msec
+    slat (usec): min=41, max=431, avg=54.13, stdev=21.78
+    clat (msec): min=17, max=94, avg=53.25, stdev=10.90
+    bw (KB/s) : min=1084416, max=1292288, per=99.67%, avg=1222343.46, stdev=48570.11
+  cpu          : usr=0.94%, sys=13.92%, ctx=7918, majf=0, minf=16409
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.2%, >=64=99.6%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=16384/0, short=0/0
+
+     lat (msec): 20=0.02%, 50=31.50%, 100=68.48%
+rand-read: (groupid=3, jobs=1): err= 0: pid=21839
+  read : io=8192MB, bw=1200MB/s, iops=2400, runt=  6824msec
+    slat (usec): min=42, max=492, avg=55.67, stdev=21.20
+    clat (msec): min=12, max=107, avg=53.12, stdev= 8.97
+    bw (KB/s) : min=1121280, max=1271840, per=99.94%, avg=1228487.38, stdev=38073.68
+  cpu          : usr=1.64%, sys=13.95%, ctx=8058, majf=0, minf=16408
+  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.2%, >=64=99.6%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.1%
+     issued r/w: total=16384/0, short=0/0
+
+     lat (msec): 20=1.76%, 50=22.86%, 100=75.32%, 250=0.05%
+
+Run status group 0 (all jobs):
+  WRITE: io=8192MB, aggrb=434958KB/s, minb=445397KB/s, maxb=445397KB/s, mint=19286msec, maxt=19286msec
+
+Run status group 1 (all jobs):
+  WRITE: io=8192MB, aggrb=449526KB/s, minb=460314KB/s, maxb=460314KB/s, mint=18661msec, maxt=18661msec
+
+Run status group 2 (all jobs):
+   READ: io=8192MB, aggrb=1198MB/s, minb=1226MB/s, maxb=1226MB/s, mint=6840msec, maxt=6840msec
+
+Run status group 3 (all jobs):
+   READ: io=8192MB, aggrb=1200MB/s, minb=1229MB/s, maxb=1229MB/s, mint=6824msec, maxt=6824msec
+
+Disk stats (read/write):
+  sdb: ios=32593/64888, merge=0/32349, ticks=1719604/2385764, in_queue=4108208, util=92.73%
