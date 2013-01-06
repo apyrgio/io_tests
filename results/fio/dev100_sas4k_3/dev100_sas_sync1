@@ -1,0 +1,70 @@
+seq-write: (g=0): rw=write, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+rand-write: (g=1): rw=randwrite, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+seq-read: (g=2): rw=read, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+rand-read: (g=3): rw=randread, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+Starting 4 processes
+seq-write: Laying out IO file(s) (1 file(s) / 8192MB)
+
+seq-write: (groupid=0, jobs=1): err= 0: pid=10825
+  write: io=14948KB, bw=255091B/s, iops=62, runt= 60005msec
+    clat (usec): min=7259, max=27986, avg=16052.74, stdev=577.50
+    bw (KB/s) : min=  242, max=  251, per=100.03%, avg=249.09, stdev= 1.87
+  cpu          : usr=0.00%, sys=0.38%, ctx=7474, majf=0, minf=27
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=0/3737, short=0/0
+
+     lat (msec): 10=0.05%, 20=99.30%, 50=0.64%
+rand-write: (groupid=1, jobs=1): err= 0: pid=12183
+  write: io=517852KB, bw=8631KB/s, iops=2157, runt= 60001msec
+    clat (usec): min=55, max=155593, avg=459.16, stdev=845.86
+    bw (KB/s) : min= 5328, max=14632, per=100.15%, avg=8642.82, stdev=1627.18
+  cpu          : usr=1.25%, sys=10.38%, ctx=261244, majf=0, minf=157
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=0/129463, short=0/0
+     lat (usec): 100=0.07%, 250=3.83%, 500=65.84%, 750=29.55%, 1000=0.64%
+     lat (msec): 2=0.04%, 4=0.01%, 10=0.01%, 20=0.01%, 50=0.01%
+     lat (msec): 100=0.01%, 250=0.01%
+seq-read: (groupid=2, jobs=1): err= 0: pid=13522
+  read : io=4030MB, bw=68783KB/s, iops=17195, runt= 60000msec
+    clat (usec): min=1, max=165834, avg=57.41, stdev=759.03
+    bw (KB/s) : min=16236, max=273648, per=99.30%, avg=68301.13, stdev=61000.84
+  cpu          : usr=1.96%, sys=6.11%, ctx=66959, majf=0, minf=30
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=1031752/0, short=0/0
+     lat (usec): 2=2.36%, 4=76.59%, 10=14.17%, 20=0.39%, 50=0.46%
+     lat (usec): 100=1.77%, 250=1.54%, 500=1.54%, 750=0.20%, 1000=0.08%
+     lat (msec): 2=0.19%, 4=0.30%, 10=0.35%, 20=0.04%, 50=0.02%
+     lat (msec): 100=0.01%, 250=0.01%
+rand-read: (groupid=3, jobs=1): err= 0: pid=14888
+  read : io=1833MB, bw=31286KB/s, iops=7821, runt= 60002msec
+    clat (usec): min=2, max=7786, avg=126.54, stdev=621.92
+    bw (KB/s) : min=25104, max=40528, per=100.04%, avg=31297.03, stdev=2576.99
+  cpu          : usr=1.17%, sys=4.27%, ctx=29924, majf=0, minf=159
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=469307/0, short=0/0
+     lat (usec): 4=9.93%, 10=81.29%, 20=2.38%, 50=0.02%, 100=0.83%
+     lat (usec): 250=1.30%, 500=0.16%, 750=0.01%, 1000=0.09%
+     lat (msec): 2=1.00%, 4=2.05%, 10=0.93%
+
+Run status group 0 (all jobs):
+  WRITE: io=14948KB, aggrb=249KB/s, minb=255KB/s, maxb=255KB/s, mint=60005msec, maxt=60005msec
+
+Run status group 1 (all jobs):
+  WRITE: io=517852KB, aggrb=8630KB/s, minb=8837KB/s, maxb=8837KB/s, mint=60001msec, maxt=60001msec
+
+Run status group 2 (all jobs):
+   READ: io=4030MB, aggrb=68783KB/s, minb=70434KB/s, maxb=70434KB/s, mint=60000msec, maxt=60000msec
+
+Run status group 3 (all jobs):
+   READ: io=1833MB, aggrb=31286KB/s, minb=32036KB/s, maxb=32036KB/s, mint=60002msec, maxt=60002msec
+
+Disk stats (read/write):
+  sdc: ios=96801/401962, merge=0/273663, ticks=111896/144192, in_queue=255656, util=86.51%

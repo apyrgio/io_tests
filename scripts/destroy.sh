@@ -17,7 +17,7 @@ echo 1 > /sys/block/$BCACHE_DEV/bcache/stop
 echo 1 > /sys/block/sdb/bcache/set/stop
 
 ################### CLEAR DEVICES #######################
-umount /mnt/bcache
+umount /mnt/sysbench 2>/dev/null
 
 echo -n "Waiting for bcache to finish detaching... "
 while [ -e /sys/block/$BCACHE_DEV ]; do

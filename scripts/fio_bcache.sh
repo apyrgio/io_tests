@@ -6,29 +6,13 @@ txtgrn=$(tput setaf 2) 	# Make text green
 
 ################## READ ARGUMENTS ###################
 
-print_help(){
-	echo -e "\nList of parameters:"
-	echo -e "-h, --help:\tprint this message and exit"
-	echo -e "-d, --dry:\tdo not run any benchmarks"
-	echo -e "-w, --wait:\twait for writeback to finish between each test"
-	exit 0
-}
+source headers.sh
 
-wait_dirty(){
-	if [[ ! $WAIT ]]; then return; fi
-	echo 1 > /sys/block/$BCACHE_DEV/bcache/writeback_running
-	echo -n "Waiting for bcache to finish writeback... "
-	BACK_STATE="cat /sys/block/${BCACHE_DEV}/bcache/state"
-	while [[ $(eval $BACK_STATE) = "dirty" ]]; do
-		sleep 1
-	done
-	echo "${txtgrn}done.${txtrst}"
-}
-
-while [ -n "$1" ]; do
+while [[ -n $1 ]]; do
 	if [[ $1 = "-h" ]] || [[ $1 = "--help" ]]; then print_help
 	elif [[ $1 = "-d" ]] || [[ $1 = "--dry" ]]; then DRY=0
 	elif [[ $1 = "-w" ]] || [[ $1 = "--wait" ]]; then WAIT=0
+	elif [[ $1 = "-o" ]] || [[ $1 = "--output" ]]; then create_outdir $1 $2; shift
 	else echo "${txtred}${1}: Unknown command${txtrst}"; print_help
 	fi
 	shift
@@ -46,6 +30,7 @@ CACHE_SET_OPTS="-b 512k"
 BACKING_DEV_OPTS="--writeback"
 DEVICES_SCRIPT="$PROJECT_FOLDER"/scripts/init.sh
 BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
+BCACHE_DIR=/mnt/sysbench
 
 ################# PREPARE AND START BCACHE ###############
 
@@ -66,23 +51,25 @@ if [[ $DRY ]]; then
 	echo "Dry run. No benchmark started."
 	exit 0
 fi
-
+exit
 echo "${txtred}######### GATE 3: BENCHMARKS #########${txtrst}"
 
-mkdir -p /mnt/bcache
-cd /mnt/bcache
-rm -rf /mnt/bcache/*
+if [[ -z $OUT_DIR ]]; then OUT_DIR="$PROJECT_FOLDER"/results; fi
+
+mkdir -p $BCACHE_DIR
+cd $BCACHE_DIR
+rm -rf ${BCACHE_DIR}/*
 
 for IOENGINE in sync libaio ; do
-	for NUMPROCS in 1 2 4 8 ; do
+	for NUMPROCS in 1 2 ; do
 		wait_dirty	#will do only when -w or --wait option is given
 		SIZE="$[8 / $NUMPROCS]"G
-		TIME=5m
+		TIME=1m
 		export IOENGINE
 		export NUMPROCS
 		export SIZE
 		export TIME
-		RES_FILE="$PROJECT_FOLDER"/results/"$SCRIPT_NAME"_"$IOENGINE""$NUMPROCS"
+		RES_FILE="$OUT_DIR"/"$SCRIPT_NAME"_"$IOENGINE""$NUMPROCS"
 		echo -n "fio: Benchmarking bcache using $IOENGINE engine and $NUMPROCS threads... "
 		fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > $RES_FILE
 		echo "${txtgrn}done.${txtrst}"
@@ -90,4 +77,4 @@ for IOENGINE in sync libaio ; do
 	done
 done
 
-echo "Benchmarks completed."
+echo "${txtgrn}Benchmarks completed.${txtrst}"

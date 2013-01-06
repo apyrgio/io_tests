@@ -36,7 +36,7 @@ echo "${txtgrn}done.${txtrst}"
 # Bcache
 
 # Comment the following line to enable writethrough for sequential reads
-echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
+#echo 0 > /sys/block/$BCACHE_DEV/bcache/sequential_cutoff
 
 echo 40 > /sys/block/$BCACHE_DEV/bcache/writeback_percent
 #echo 0 > /sys/block/$BCACHE_DEV/bcache/writeback_delay
@@ -55,7 +55,7 @@ echo noop > /sys/block/${CACHE_SET}/queue/scheduler
 # Mount the virtual device
 echo -n "Format and mount bcache's virtual device... "
 mkfs.ext4 -F -q /dev/$BCACHE_DEV
-mount -t ext4 -o noatime /dev/$BCACHE_DEV /mnt/bcache
+mount -t ext4 -o relatime /dev/$BCACHE_DEV $BCACHE_DIR 
 echo "${txtgrn}done.${txtrst}"
 
 echo ""

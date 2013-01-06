@@ -28,11 +28,11 @@ cache_stats(){
 }
 
 dir_stats(){
-	ls -oghAt --color --time-style=+"%d-%m-%y_%T" /mnt/bcache > /tmp/dir_stats.tmp.1
-	sed -i 's/^.\{13\}//' /tmp/dir_stats.tmp.1
+	ls -oghAti --color --time-style=+"%d-%m-%y_%T" /mnt/sysbench > /tmp/dir_stats.tmp.1
+	#sed -i 's/^.\{13\}//' /tmp/dir_stats.tmp.1
 	sed -e '1q' /tmp/dir_stats.tmp.1 > /tmp/dir_stats.tmp.2
 	sed -i '1d' /tmp/dir_stats.tmp.1
-	echo -e "\n${txtbrn}+           ${txtgrn}Stats for /mnt/bcache           ${txtbrn}+"
+	echo -e "\n${txtbrn}+           ${txtgrn}Stats for /mnt/sysbench         ${txtbrn}+"
 	echo "+-------------------------------------------+${txtrst}"
 	cat /tmp/dir_stats.tmp.1
 	echo "${txtbrn}+-------------------------------------------+${txtrst}"
@@ -47,6 +47,8 @@ io_stat(){
 	LC=$[LC+6]
 }
 
+killall iostat 2>/dev/null
+echo ""
 iostat -m 1 sdb sdc > /tmp/io_stat.tmp &
 CACHE_DEV=sdb
 echo -e "${txtgrn}\t\tDirty\tWritten\tBypassed Avail.\tRatio${txtrst}"
@@ -56,7 +58,7 @@ while [ true ]; do
 	BCACHE_DEV=`ls /sys/block/ | grep bcache`
 	bcache_stats 2>/dev/null
 	cache_stats 2>/dev/null
-	#dir_stats 2>/dev/null
+	dir_stats 2>/dev/null
 	io_stat
 	sleep 1		# Sleep for a very small ammount of time
 	tput cuu $LC
