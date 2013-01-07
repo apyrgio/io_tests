@@ -5,13 +5,13 @@
 source headers.sh
 
 # Check if user has asked for help
-if [[ $1 = '-h' ]] || [[ $1 = '--help' ]]; then print_help; fi
+if [[ ( $1 = '-h' || $1 = '--help' ) ]]; then print_help; fi
 
 # Fist argument: target
-if [[ $1 = 'sas' ]] || [[ $1 = 'ssd' ]] || [[ $1 = 'bcache' ]] || \
-	[[ $1 = 'ram' ]]; then TARGET=$1; shift
+if [[ $1 = 'sas' ]] || [[ $1 = 'ssd' ]] || [[ $1 = 'bcache' ]]; then
+	TARGET=$1; shift
 else
-	bad_echo "${1}: Incorrect target.\nValid options are [bcache|sas|ssd|ram]"
+	red_echo "${1}: Incorrect target.\nValid options are [bcache|sas|ssd]"
 	exit 1
 fi
 
@@ -19,49 +19,49 @@ fi
 if [[ $1 = 'fs' ]] || [[ $1 = 'raw' ]]; then
 	MODE=$1; shift
 else
-	bad_echo "${1}: Incorrect mode.\nValid modes are [fs|raw]"
+	red_echo "${1}: Incorrect mode.\nValid modes are [fs|raw]"
 	exit 1
 fi
 
 # We iterate over the rest (optional) arguments
 while [[ -n $1 ]]; do
-	if [[ $1 = '-h' ]] || [[ $1 = '--help' ]]; then print_help
-	elif [[ $1 = '-d' ]] || [[ $1 = '--dry' ]]; then DRY=0
-	elif [[ ( $1 = '-w' || $1 = '--wait' ) && $TARGET = 'bcache' ]]; then WAIT=0
-	elif [[ $1 = "-o" ]] || [[ $1 = "--output" ]]; then create_outdir $1 $2; shift
-	else bad_echo "${1}: Unknown command."; print_help
+	if [[ ( $1 = '-h' || $1 = '--help' ) ]]; then print_help
+	elif [[ ( $1 = '-d' || $1 = '--dry' ) ]]; then DRY=0
+	elif [[ ( $1 = '-w' || $1 = '--wait' ) ]]; then
+		if [[ $TARGET = 'bcache' ]]; then WAIT=0; fi
+	elif [[ ( $1 = "-o" || $1 = "--output" ) ]]; then create_outdir $1 $2; shift
+	else red_echo "${1}: Unknown command."; print_help
 	fi
 	shift
 done
-
 exit
 
 ####################### PARAMETERS #######################
 
 SCRIPT_NAME=`echo "${0##*/}" | sed 's/.sh//'`
 CUR_DATE=`date +"%d-%m-%y_%T"`
-PROJECT_FOLDER=/root/playground/io_tests
-CACHE_SET=sdb			# The SSD
-BACKING_DEV=sdc			# The RAID
+PROJECT_FOLDER=$(readlink -f $(git rev-parse --show-cdup))
+SSD_TARGET=sdb
+SAS_TARGET=sdc
+CACHE_SET=$SSD_TARGET	# We translate the above in bcache semantics
+BACKING_DEV=$SAS_TARGET	#
 CACHE_SET_SIZE=2621440	# Cache set size in KB (for ramdisk)
 CACHE_SET_OPTS="-b 512k"
 BACKING_DEV_OPTS="--writeback"
 DEVICES_SCRIPT="$PROJECT_FOLDER"/scripts/init.sh
 BCACHE_SCRIPT="$PROJECT_FOLDER"/scripts/do_bcache.sh
-BCACHE_DIR=/mnt/sysbench
+BENCH_DIR=/mnt/sysbench
 
-################# PREPARE AND START BCACHE ###############
+##################### PREPARE TARGET ######################
 
-BCACHE_DEV=`ls /sys/block/ | grep bcache`
-if [ -z "$BCACHE_DEV" ]; then
-	# Prepare devices
-	. $DEVICES_SCRIPT
-
-	# Format, attach and mount the devices
-	. $BCACHE_SCRIPT
-else
-	echo -e "${txtgrn}Bcache is running.\n${txtrst}"
+if [[ $TARGET = 'bcache' ]]; then
+	# First we check if bcache is running. If not, we prepare
+	# the backing_dev/cache_set as needed.
+	BCACHE_DEV=`ls /sys/block/ | grep bcache`
+	if [ -z $BCACHE_DEV ]; then . prepare_bcache.sh
+	else grn_echo "Bcache is running."
 fi
+else . prepare_device.sh #no bcache, just the target device
 
 ##################### BENCHMARKS ########################
 
