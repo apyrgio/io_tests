@@ -1,22 +1,40 @@
 #! /bin/bash
 
-txtrst=$(tput sgr0) 	# Reset text color
-txtred=$(tput setaf 1) 	# Make text red
-txtgrn=$(tput setaf 2) 	# Make text green
-
 ################## READ ARGUMENTS ###################
 
 source headers.sh
 
+# Check if user has asked for help
+if [[ $1 = '-h' ]] || [[ $1 = '--help' ]]; then print_help; fi
+
+# Fist argument: target
+if [[ $1 = 'sas' ]] || [[ $1 = 'ssd' ]] || [[ $1 = 'bcache' ]] || \
+	[[ $1 = 'ram' ]]; then TARGET=$1; shift
+else
+	bad_echo "${1}: Incorrect target.\nValid options are [bcache|sas|ssd|ram]"
+	exit 1
+fi
+
+# Second argument: mode
+if [[ $1 = 'fs' ]] || [[ $1 = 'raw' ]]; then
+	MODE=$1; shift
+else
+	bad_echo "${1}: Incorrect mode.\nValid modes are [fs|raw]"
+	exit 1
+fi
+
+# We iterate over the rest (optional) arguments
 while [[ -n $1 ]]; do
-	if [[ $1 = "-h" ]] || [[ $1 = "--help" ]]; then print_help
-	elif [[ $1 = "-d" ]] || [[ $1 = "--dry" ]]; then DRY=0
-	elif [[ $1 = "-w" ]] || [[ $1 = "--wait" ]]; then WAIT=0
+	if [[ $1 = '-h' ]] || [[ $1 = '--help' ]]; then print_help
+	elif [[ $1 = '-d' ]] || [[ $1 = '--dry' ]]; then DRY=0
+	elif [[ ( $1 = '-w' || $1 = '--wait' ) && $TARGET = 'bcache' ]]; then WAIT=0
 	elif [[ $1 = "-o" ]] || [[ $1 = "--output" ]]; then create_outdir $1 $2; shift
-	else echo "${txtred}${1}: Unknown command${txtrst}"; print_help
+	else bad_echo "${1}: Unknown command."; print_help
 	fi
 	shift
 done
+
+exit
 
 ####################### PARAMETERS #######################
 

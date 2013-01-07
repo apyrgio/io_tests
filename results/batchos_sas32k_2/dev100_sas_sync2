@@ -1,0 +1,24 @@
+seq-write: (g=0): rw=write, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+seq-write: (g=0): rw=write, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+rand-write: (g=1): rw=randwrite, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+rand-write: (g=1): rw=randwrite, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+seq-read: (g=2): rw=read, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+seq-read: (g=2): rw=read, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+rand-read: (g=3): rw=randread, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+rand-read: (g=3): rw=randread, bs=32K-32K/32K-32K, ioengine=sync, iodepth=32
+Starting 8 processes
+seq-write: Laying out IO file(s) (1 file(s) / 8192MB)
+
+fio: terminating on signal 2
+
+
+Run status group 0 (all jobs):
+
+Run status group 1 (all jobs):
+
+Run status group 2 (all jobs):
+
+Run status group 3 (all jobs):
+
+Disk stats (read/write):
+  sdc: ios=0/0, merge=0/0, ticks=0/0, in_queue=0, util=-nan%

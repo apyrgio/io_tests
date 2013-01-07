@@ -5,13 +5,16 @@ DEV=$2
 MODE=$3
 PROJECT_FOLDER=/root/playground/io_tests
 
+OUT_DIR=$(readlink -f $OUT_DIR)
+mkdir $OUT_DIR
+
 if [[ -z $UTILITY ]] || [[ -z $DEV ]]; then
 	echo "Usage: # ./sysbench [fio|iozone] [ram|sas|ssd] [fs|raw]"
 	exit 1
 fi
 
-#mkdir -p /mnt/sysbench
-#umount -l /mnt/sysbench 2>/dev/null
+mkdir -p /mnt/sysbench
+umount -l /mnt/sysbench 2>/dev/null
 
 echo "Inititate benchmarking of $DEV with the $UTILITY tool."
 
@@ -36,11 +39,11 @@ elif [[ $DEV = "sas" ]]; then
 	#mkfs.ext4 -F -q /dev/sdc
 	echo "done."
 	echo -n "Mount sas... "
-	#mount -t ext4 -o relatime /dev/sdc /mnt/sysbench
+	mount -t ext4 -o relatime /dev/sdc /mnt/sysbench
 	echo "done."
 elif [[ $DEV = "ssd" ]]; then
 	echo -n "Format ssd as ext4... "
-    mkfs.ext4 -F -q /dev/sdb
+    #mkfs.ext4 -F -q /dev/sdb
     echo "done."
     echo -n "Mount sdd... "
     mount -t ext4 -o relatime /dev/sdb /mnt/sysbench
@@ -55,17 +58,16 @@ if [[ $UTILITY = "fio" ]]; then
 	for IOENGINE in sync libaio ; do
 		for NUMPROCS in 1 2 ; do
 			SIZE="$[8 / $NUMPROCS]"G
-			TIME=1m
+			TIME=30s
 			export IOENGINE
 			export NUMPROCS
 			export SIZE
 			export TIME
-			RES_FILE="$PROJECT_FOLDER"/results/dev100_"$DEV"_"$IOENGINE""$NUMPROCS"
+			RES_FILE="$OUT_DIR"/dev100_"$DEV"_"$IOENGINE""$NUMPROCS"
 			echo -n "fio: Benchmarking $DEV using $IOENGINE engine and $NUMPROCS threads... "
-			fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini #> $RES_FILE
+			fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > "$RES_FILE"
 			rm -rf /mnt/sysbench/*
 			echo "done."
-			exit
 		done
 	done
 elif [[ $UTILITY = "iozone" ]]; then #Currently doing only synchronous read/writes

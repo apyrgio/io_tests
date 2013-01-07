@@ -1,0 +1,69 @@
+seq-write: (g=0): rw=write, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+rand-write: (g=1): rw=randwrite, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+seq-read: (g=2): rw=read, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+rand-read: (g=3): rw=randread, bs=4K-4K/4K-4K, ioengine=sync, iodepth=32
+Starting 4 processes
+seq-write: Laying out IO file(s) (1 file(s) / 8192MB)
+
+seq-write: (groupid=0, jobs=1): err= 0: pid=32544
+  write: io=320208KB, bw=10673KB/s, iops=2668, runt= 30001msec
+    clat (usec): min=179, max=25400, avg=371.97, stdev=1041.45
+    bw (KB/s) : min= 5113, max=16408, per=99.71%, avg=10641.58, stdev=2515.81
+  cpu          : usr=1.27%, sys=9.44%, ctx=160127, majf=0, minf=26
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=0/80052, short=0/0
+     lat (usec): 250=63.75%, 500=31.57%, 750=2.22%, 1000=0.04%
+     lat (msec): 2=0.99%, 4=0.40%, 10=0.57%, 20=0.45%, 50=0.01%
+rand-write: (groupid=1, jobs=1): err= 0: pid=32545
+  write: io=358704KB, bw=11956KB/s, iops=2989, runt= 30001msec
+    clat (usec): min=45, max=4297, avg=330.98, stdev=91.92
+    bw (KB/s) : min= 8640, max=16008, per=99.92%, avg=11946.03, stdev=1607.19
+  cpu          : usr=1.35%, sys=11.37%, ctx=176801, majf=0, minf=157
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=0/89676, short=0/0
+     lat (usec): 50=0.01%, 100=2.66%, 250=8.95%, 500=84.62%, 750=3.73%
+     lat (usec): 1000=0.02%
+     lat (msec): 2=0.01%, 4=0.01%, 10=0.01%
+seq-read: (groupid=2, jobs=1): err= 0: pid=32546
+  read : io=6911MB, bw=235895KB/s, iops=58973, runt= 30001msec
+    clat (usec): min=1, max=12371, avg=16.28, stdev=68.95
+    bw (KB/s) : min=64288, max=293296, per=100.18%, avg=236327.32, stdev=67341.05
+  cpu          : usr=6.21%, sys=20.95%, ctx=152246, majf=0, minf=29
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=1769274/0, short=0/0
+     lat (usec): 2=1.26%, 4=84.38%, 10=5.73%, 20=0.03%, 50=4.07%
+     lat (usec): 100=0.91%, 250=0.11%, 500=3.51%, 750=0.01%, 1000=0.01%
+     lat (msec): 2=0.01%, 4=0.01%, 10=0.01%, 20=0.01%
+rand-read: (groupid=3, jobs=1): err= 0: pid=32547
+  read : io=4398MB, bw=150111KB/s, iops=37527, runt= 30001msec
+    clat (usec): min=1, max=13684, avg=25.60, stdev=86.50
+    bw (KB/s) : min=117408, max=176968, per=100.10%, avg=150267.53, stdev=9077.63
+  cpu          : usr=4.53%, sys=17.63%, ctx=89015, majf=0, minf=93
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued r/w: total=1125872/0, short=0/0
+     lat (usec): 2=0.01%, 4=29.22%, 10=62.79%, 20=0.08%, 50=0.19%
+     lat (usec): 100=1.29%, 250=0.25%, 500=6.15%, 750=0.03%
+     lat (msec): 4=0.01%, 10=0.01%, 20=0.01%
+
+Run status group 0 (all jobs):
+  WRITE: io=320208KB, aggrb=10673KB/s, minb=10929KB/s, maxb=10929KB/s, mint=30001msec, maxt=30001msec
+
+Run status group 1 (all jobs):
+  WRITE: io=358704KB, aggrb=11956KB/s, minb=12243KB/s, maxb=12243KB/s, mint=30001msec, maxt=30001msec
+
+Run status group 2 (all jobs):
+   READ: io=6911MB, aggrb=235895KB/s, minb=241556KB/s, maxb=241556KB/s, mint=30001msec, maxt=30001msec
+
+Run status group 3 (all jobs):
+   READ: io=4398MB, aggrb=150111KB/s, minb=153713KB/s, maxb=153713KB/s, mint=30001msec, maxt=30001msec
+
+Disk stats (read/write):
+  sdb: ios=240610/503481, merge=0/338079, ticks=45908/43336, in_queue=88988, util=73.74%
