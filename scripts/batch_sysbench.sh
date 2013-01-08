@@ -53,7 +53,7 @@ elif [[ $DEV = "ssd" ]]; then
 fi
 
 cd /mnt/sysbench
-rm -rf /mnt/sysbench/*
+rm /mnt/sysbench/*
 if [[ $UTILITY = "fio" ]]; then
 	for IOENGINE in sync libaio ; do
 		for NUMPROCS in 1 2 ; do
@@ -66,7 +66,7 @@ if [[ $UTILITY = "fio" ]]; then
 			RES_FILE="$OUT_DIR"/dev100_"$DEV"_"$IOENGINE""$NUMPROCS"
 			echo -n "fio: Benchmarking $DEV using $IOENGINE engine and $NUMPROCS threads... "
 			fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > "$RES_FILE"
-			rm -rf /mnt/sysbench/*
+			rm /mnt/sysbench/*
 			echo "done."
 		done
 	done

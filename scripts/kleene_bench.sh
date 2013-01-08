@@ -76,7 +76,7 @@ if [[ -z $OUT_DIR ]]; then OUT_DIR="$PROJECT_FOLDER"/results; fi
 
 mkdir -p $BCACHE_DIR
 cd $BCACHE_DIR
-rm -rf ${BCACHE_DIR}/*
+rm ${BCACHE_DIR}/*
 
 for IOENGINE in sync libaio ; do
 	for NUMPROCS in 1 2 ; do
@@ -91,7 +91,7 @@ for IOENGINE in sync libaio ; do
 		echo -n "fio: Benchmarking bcache using $IOENGINE engine and $NUMPROCS threads... "
 		fio "$PROJECT_FOLDER"/scripts/fio/benchmark.ini > $RES_FILE
 		echo "${txtgrn}done.${txtrst}"
-		rm -rf /mnt/bcache/*
+		rm /mnt/bcache/*
 	done
 done
 
